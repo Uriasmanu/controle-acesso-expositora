@@ -67,6 +67,7 @@ A fase 1 precisa nascer preparada para a fase 2 (ver §6.4): o protocolo de auto
 - **Lingueta de engate automático (fail-secure)**: ao fechar, o pino empurra a lingueta e a porta trava sozinha, sem gastar energia.
 - **Destravamento elétrico por pulso**: solenoide ou motor que só consome energia durante a abertura (cerca de 0,5 a 2 s), e não para manter a posição.
 - **Chave mecânica** atuando direto na lingueta, em paralelo ao atuador elétrico.
+- **Peça candidata:** mini fechadura solenoide 12 V (Montimport, Mercado Livre), ainda não comprada. Antes de comprar, confirmar: trava sem energia, lingueta chanfrada, corrente (A) e tempo máximo ligado. Esse tipo não costuma ter chave nem sensor embutidos, então a chave mecânica (etapa 4) e a microchave de trava seriam peças à parte.
 - **Sensores**: um para porta aberta/fechada (reed switch + ímã no batente) e outro para lingueta travada (microchave), para confirmar no app que a porta trancou de verdade.
 
 ### 6.2 Comunicação
