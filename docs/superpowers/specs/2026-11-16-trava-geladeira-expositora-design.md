@@ -22,8 +22,8 @@ O sistema funciona só com bateria, sem ligação à tomada da geladeira.
 A fase 1 precisa nascer preparada para a fase 2 (ver §6.4): o protocolo de autorização não pode ter que ser refeito quando os clientes entrarem.
 
 **Contexto de quem constrói:**
-- É a **primeira vez** construindo algo assim (eletrônica, firmware e app). O projeto também é um aprendizado e quer dar certo nessa tentativa.
-- **Orçamento apertado:** a construção vai **por partes** (§12), cada etapa barata, testável sozinha e útil para a próxima. Só se compra a peça da etapa seguinte depois que a anterior funcionar.
+- É a **primeira vez** construindo um projeto desse tipo.
+- **Orçamento apertado:** as peças do projeto são **compradas aos poucos** (§12). Cada lote de compra destrava uma etapa testável, e o lote seguinte só é comprado depois que a etapa anterior funcionar.
 - Consequência: em cada decisão, preferir peças **baratas, comuns no Brasil e com muito tutorial disponível**, mesmo que não sejam as ideais para produção.
 
 ## 2. Objetivos
@@ -132,8 +132,7 @@ A fase 1 precisa nascer preparada para a fase 2 (ver §6.4): o protocolo de auto
 4. Bateria recarregável (com entrada USB) ou de troca?
 5. Plataforma do app: Android, iOS ou ambos?
 6. Modelo e dimensões da geladeira-alvo (espessura da moldura e espaço no topo).
-7. ~~Quantidade~~ → começa com **um protótipo**, construído por partes.
-8. Que ferramentas você já tem (ferro de solda, multímetro, protoboard)? Isso muda o custo da etapa 0.
+7. ~~Quantidade~~ → começa com **um protótipo**, com as peças compradas aos poucos.
 
 ## 11. Deixado para quem for construir
 
@@ -142,20 +141,19 @@ A fase 1 precisa nascer preparada para a fase 2 (ver §6.4): o protocolo de auto
 - Orçamento de energia detalhado e escolha da bateria.
 - Protocolo BLE (serviços e características) e formato do histórico.
 
-## 12. Construção por partes (*proposta*)
+## 12. Compras e etapas aos poucos (*proposta*)
 
-Cada etapa termina com algo funcionando e só exige comprar o que ela usa. Os valores são **estimativas aproximadas** e precisam ser conferidas no mercado.
+Cada etapa corresponde a um lote de compra e termina com algo funcionando. Os valores são **estimativas aproximadas** e precisam ser conferidos no mercado.
 
-| # | Etapa | O que se aprende | Compra nova (aprox.) | Pronto quando… |
-|---|---|---|---|---|
-| 0 | **Primeiros passos com o ESP32** | Programar o ESP32, acender um LED, BLE básico | ESP32 DevKit, cabo USB, protoboard, jumpers (~R$ 50–80) | O celular, usando um app genérico de BLE (por exemplo, nRF Connect), liga e desliga um LED |
-| 1 | **Trava na bancada** | Acionar carga com MOSFET, pulso de abertura | Fechadura solenoide 12 V tipo lingueta, MOSFET/módulo, fonte 12 V (~R$ 60–100) | O comando BLE do app genérico destrava por cerca de 1 s e a lingueta volta sozinha |
-| 2 | **Sensores** | Ler entradas e interrupções | Reed switch + ímã, microchave (~R$ 15–30) | O app genérico mostra "porta aberta/fechada" e "travada" |
-| 3 | **Bateria e economia de energia** | Sono profundo, medir consumo | Bateria(s) 18650, carregador/proteção, conversor para 12 V (~R$ 50–90) | Funciona só na bateria, com consumo medido e estimativa de duração calculada |
-| 4 | **Instalação na geladeira + chave** | Montagem mecânica, caixa | Caixa plástica, suportes, solução da chave mecânica (~R$ 40–100) | Instalada, abre pelo app genérico e pela chave, mesmo sem bateria |
-| 5 | **App do dono** | Desenvolvimento de app com BLE | — (software) | O app próprio substitui o genérico: abrir, estado, bateria |
-| 6 | **Autorização segura** | Assinatura digital, tokens | — (software) | Só o celular autorizado abre; um comando gravado e reenviado é recusado |
-| 7 | **Fase 2: clientes** | Servidor, cadastro, histórico | Hospedagem (pode começar no plano gratuito) | Um cliente cadastrado abre pelo próprio celular; o dono vê no histórico e consegue revogar |
+| # | Etapa | Lote de compra (aprox.) | Pronto quando… |
+|---|---|---|---|
+| 1 | **Trava na bancada** | ESP32, fechadura solenoide 12 V tipo lingueta, módulo MOSFET, fonte 12 V (~R$ 100–160) | Um app genérico de BLE (por exemplo, nRF Connect) destrava por cerca de 1 s e a lingueta volta sozinha |
+| 2 | **Sensores** | Reed switch + ímã, microchave (~R$ 15–30) | O app genérico mostra "porta aberta/fechada" e "travada" |
+| 3 | **Bateria e economia de energia** | Bateria(s) 18650, carregador/proteção, conversor para 12 V (~R$ 50–90) | Funciona só na bateria, com consumo medido e estimativa de duração calculada |
+| 4 | **Instalação na geladeira + chave** | Caixa plástica, suportes, solução da chave mecânica (~R$ 40–100) | Instalada, abre pelo app genérico e pela chave, mesmo sem bateria |
+| 5 | **App do dono** | — (software) | O app próprio substitui o genérico: abrir, estado, bateria |
+| 6 | **Autorização segura** | — (software) | Só o celular autorizado abre; um comando gravado e reenviado é recusado |
+| 7 | **Fase 2: clientes** | Hospedagem (pode começar no plano gratuito) | Um cliente cadastrado abre pelo próprio celular; o dono vê no histórico e consegue revogar |
 
 Observações:
 - Até a etapa 4 **não é preciso fazer app próprio**: o app genérico de BLE serve para testar. Isso adia a parte de software e mantém o foco no hardware.
